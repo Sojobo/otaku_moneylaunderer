@@ -7,6 +7,7 @@ Config.minStack = 600 -- The minimum amount of clean money laundered in one tran
 Config.maxStack = 600 -- The maximum amount of clean money laundered in one transaction
 
 Config.launderSpeed = 2500 -- How quickly money is laundered in ms (2500 is 2.5s)
+Config.versionCheck = true -- On script startup, should we check for updates?
 
 Config.callPoliceChance = 10 -- The higher this number, the less likely a CAD is sent to the police
 Config.policeCooldown = 60000 -- How often can the CAD trigger for police in ms (default 60000 - 60s)
