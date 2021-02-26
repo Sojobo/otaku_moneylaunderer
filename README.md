@@ -25,6 +25,8 @@ To run otaku_moneylaunderer you will need to be using the following resources;
 ## Download & Installation
 
 - Add this in your server.cfg: "ensure otaku_moneylaunderer"
+- Modify your "esx_service\__resource.lua" file to include the following export; ```server_exports { "GetInServiceCount" }```
+
 
 ## Help & Support
 
