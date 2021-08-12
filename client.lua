@@ -56,9 +56,9 @@ end
 
 function isNearMoneyLaunderer()
     if laundering <= 0 and Config.launderLocations[currentLaunderer] then
-        local ply = GetPlayerPed(-1)
+        local ply = PlayerPedId()
         local plyCoords = GetEntityCoords(ply, 0)
-        local distance = GetDistanceBetweenCoords(Config.launderLocations[currentLaunderer].pos, plyCoords["x"], plyCoords["y"], plyCoords["z"], true)
+        local distance = #(Config.launderLocations[currentLaunderer].pos - plyCoords)
 
         if isEmergencyStaff() and distance < 20 then
             -- move the launderer
@@ -78,9 +78,9 @@ function isNearMoneyLaunderer()
 end
 
 function isNearSpecificMoneyLaunderer(launderer)
-    local ply = GetPlayerPed(-1)
+    local ply = PlayerPedId()
     local plyCoords = GetEntityCoords(ply, 0)
-    local distance = GetDistanceBetweenCoords(Config.launderLocations[launderer].pos, plyCoords["x"], plyCoords["y"], plyCoords["z"], true)
+    local distance = #(Config.launderLocations[launderer].pos, - plyCoords)
     if (distance < 5) then
         return true
     end
@@ -101,7 +101,7 @@ Citizen.CreateThread(
             Citizen.Wait(dirtyWaitTime)
             dirtyWaitTime = 500
 
-            local ply = GetPlayerPed(-1)
+            local ply = PlayerPedId()
             if isNearMoneyLaunderer() <= 5.0 and not IsPedInAnyVehicle(ply) and laundering == -1 then
                 dirtyWaitTime = 0
                 drawTxt("Press ~g~E~s~ to begin laundering your money.", 0, 1, 0.5, 0.8, 0.6, 255, 255, 255, 255)
@@ -141,7 +141,7 @@ Citizen.CreateThread(
     function()
         while true do
             Citizen.Wait(1000)
-            local ply = GetPlayerPed(-1)
+            local ply = PlayerPedId()
             if
                 laundering > 0 and
                     (not isNearSpecificMoneyLaunderer(laundering) or IsPedBeingStunned(closestPed) or
